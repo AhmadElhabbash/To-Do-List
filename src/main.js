@@ -1,24 +1,41 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const taskForm = document.getElementById("task-form");
+const taskInput = document.getElementById("task-input");
+const taskList = document.getElementById("task-list");
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-setupCounter(document.querySelector('#counter'))
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function renderTasks() {
+  taskList.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${task}
+      <button onclick="deleteTask(${index})">X</button>
+    `;
+    taskList.appendChild(li);
+  });
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  saveTasks();
+  renderTasks();
+}
+window.deleteTask = deleteTask;
+
+taskForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const task = taskInput.value.trim();
+  if (task !== "") {
+    tasks.push(task);
+    taskInput.value = "";
+    saveTasks();
+    renderTasks();
+  }
+});
+
+renderTasks();

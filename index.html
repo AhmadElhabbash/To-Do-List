@@ -1,13 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Advanced CRUD</title>
+    <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <main>
+      <h1>إدارة المهام</h1>
+      <form id="task-form">
+        <input type="text" id="task-input" placeholder="أدخل مهمة جديدة" />
+        <button type="submit">إضافة</button>
+      </form>
+      <ul id="task-list"></ul>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>
