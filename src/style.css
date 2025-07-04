@@ -58,3 +58,17 @@ li button {
   padding: 0 0.5rem;
   cursor: pointer;
 }
+
+#filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+#filters button {
+  flex: 1;
+  padding: 0.3rem;
+  border: none;
+  background: #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+}
