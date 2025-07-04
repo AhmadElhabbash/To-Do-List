@@ -3,37 +3,58 @@ const taskInput = document.getElementById("task-input");
 const taskList = document.getElementById("task-list");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let currentFilter = "all"; // فلتر افتراضي
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function renderTasks() {
+function renderTasks(filter = "all") {
   taskList.innerHTML = "";
+
   tasks.forEach((task, index) => {
+    // ✅ تحقق الفلتر: أنجز / غير منجز
+    if (
+      (filter === "done" && !task.done) ||
+      (filter === "not-done" && task.done)
+    ) {
+      return;
+    }
+
     const li = document.createElement("li");
     li.innerHTML = `
-    <span contenteditable="true" onblur="editTask(${index}, this)">${task}</span>
-    <button onclick="deleteTask(${index})">X</button>`;
+      <input type="checkbox" onchange="toggleDone(${index})" ${
+      task.done ? "checked" : ""
+    }>
+      <span contenteditable="true" onblur="editTask(${index}, this)" style="flex:1; text-decoration:${
+      task.done ? "line-through" : "none"
+    }">${task.text}</span>
+      <button onclick="deleteTask(${index})">X</button>`;
 
-    window.editTask = function (index, el) {
-      const newValue = el.innerText.trim();
-      if (newValue !== "") {
-        tasks[index] = newValue;
-        saveTasks();
-      }
-    };
     taskList.appendChild(li);
   });
 }
-window.editTask = function (index, el) {
+
+function toggleDone(index) {
+  tasks[index].done = !tasks[index].done;
+  saveTasks();
+  renderTasks(currentFilter);
+}
+window.toggleDone = toggleDone;
+
+function editTask(index, el) {
   const newValue = el.innerText.trim();
-};
+  if (newValue !== "") {
+    tasks[index].text = newValue;
+    saveTasks();
+  }
+}
+window.editTask = editTask;
 
 function deleteTask(index) {
   tasks.splice(index, 1);
   saveTasks();
-  renderTasks();
+  renderTasks(currentFilter);
 }
 window.deleteTask = deleteTask;
 
@@ -41,11 +62,19 @@ taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const task = taskInput.value.trim();
   if (task !== "") {
-    tasks.push(task);
+    tasks.push({ text: task, done: false });
     taskInput.value = "";
     saveTasks();
-    renderTasks();
+    renderTasks(currentFilter);
   }
+});
+
+// ✅ فلتر الأزرار: All, Done, Not Done
+document.querySelectorAll("#filters button").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    currentFilter = btn.dataset.filter;
+    renderTasks(currentFilter);
+  });
 });
 
 renderTasks();
