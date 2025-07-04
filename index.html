@@ -11,7 +11,7 @@
       <form id="task-form">
         <input type="text" id="task-input" placeholder="أدخل مهمة جديدة" />
         <input type="text" id="searchInput" placeholder="ابحث عن مهمة" />
-        <button type="submit">إضافة</button>
+        <button type="submit" id="addTaskBtn">إضافة</button>
       </form>
       <div id="filters">
         <button data-filter="all">الكل</button>
@@ -19,8 +19,8 @@
         <button data-filter="not-done">غير مكتملة</button>
       </div>
       <div id="tasksCounter">
-        <span id="completedCount"></span>
-        <span id="remainingCount"></span>
+        <span id="completedCount">0</span>: مكتملة
+        <span id="remainingCount">0</span>: غير مكتملة
       </div>
       <ul id="task-list"></ul>
     </main>
