@@ -13,12 +13,22 @@ function renderTasks() {
   tasks.forEach((task, index) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      ${task}
-      <button onclick="deleteTask(${index})">X</button>
-    `;
+    <span contenteditable="true" onblur="editTask(${index}, this)">${task}</span>
+    <button onclick="deleteTask(${index})">X</button>`;
+
+    window.editTask = function (index, el) {
+      const newValue = el.innerText.trim();
+      if (newValue !== "") {
+        tasks[index] = newValue;
+        saveTasks();
+      }
+    };
     taskList.appendChild(li);
   });
 }
+window.editTask = function (index, el) {
+  const newValue = el.innerText.trim();
+};
 
 function deleteTask(index) {
   tasks.splice(index, 1);
