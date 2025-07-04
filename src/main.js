@@ -38,6 +38,7 @@ function renderTasks(filter = "all") {
       taskList.appendChild(li);
     }
   });
+  updateTasksCounter();
 }
 
 function toggleDone(index) {
@@ -53,6 +54,15 @@ function editTask(index, el) {
     tasks[index].text = newValue;
     saveTasks();
   }
+}
+
+function updateTasksCounter() {
+  const completed = tasks.filter((t) => t.done).length;
+  const remaining = tasks.length - completed;
+  document.getElementById("completedCount").textContent =
+    completed + " مكتملة ";
+  document.getElementById("remainingCount").textContent =
+    remaining + " غير مكتملة";
 }
 window.editTask = editTask;
 

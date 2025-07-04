@@ -81,3 +81,23 @@ li button {
   border: 1px solid #ccc;
   border-radius: 6px;
 }
+
+#tasksCounter {
+  display: flex;
+  justify-content: space-around;
+
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+#completedCount {
+  color: red;
+  font-weight: 900;
+  text-align: ;
+}
+
+#remainingCount {
+  color: black;
+  font-weight: 900;
+}
