@@ -1,0 +1,90 @@
+body {
+  font-family: sans-serif;
+  background: #f7f7f7;
+  color: #333;
+  padding: 2rem;
+}
+main {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: teal;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  padding: 0;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  background: #eee;
+  padding: 0.5rem;
+  border-radius: 0;
+  margin-bottom: 0.5rem;
+  align-items: center;
+  gap: 8px;
+}
+li span {
+  flex: 1;
+}
+
+#task-counts {
+  display: flex;
+  justify-content: space-between;
+}
+.filters {
+  display: flex;
+  justify-content: space-between;
+}
+#sort-tasks {
+  height: 30px;
+  border-radius: 5px;
+
+  width: 150px;
+  max-width: 150px;
+  padding: 0px 5px;
+  border: 2px solid teal;
+  font-weight: 900;
+  color: teal;
+}
+.no-tasks {
+  background: teal;
+  color: #fff;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.export {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

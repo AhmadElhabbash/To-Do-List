@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ادارة المهام</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>قائمة المهام</h1>
+      <form id="task-form">
+        <input type="text" id="task-input" placeholder="اضف مهمة الى القائمة" />
+        <input type="text" id="search" placeholder="🔍 ابحث عن مهمة..." />
+        <input type="date" id="task-date" />
+
+        <button type="submit" id="addTaskBtn">اضافة</button>
+      </form>
+      <section class="filters">
+        <div id="filters">
+          <button data-filter="all">كل المهام</button>
+          <button data-filter="done">المكتملة</button>
+
+          <button data-filter="not-done">غيرالمكتملة</button>
+          <button data-filter="today">مهام اليوم</button>
+        </div>
+        <select id="sort-tasks">
+          <option value="latest">الاحدث اولا</option>
+          <option value="oldest">الاقدم اولا</option>
+          <option value="done">المكتملة اولا</option>
+          <option value="not-done">الغير المكتملة اولا</option>
+          <option value="by-date">حسب التاريخ (الأقرب)</option>
+        </select>
+      </section>
+      <ul id="task-list"></ul>
+      <div id="task-counts">
+        <p>الكل: <span id="total-count">0</span> 📋</p>
+        <p>مكتملة: <span id="done-count">0</span> ✅</p>
+        <p>غير مكتملة: <span id="not-done-count">0</span> 🕓</p>
+      </div>
+      <div class="export">
+        <button id="export-btn">تصدير المهام</button>
+      </div>
+    </main>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
